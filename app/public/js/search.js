@@ -8,11 +8,23 @@ $(document).ready(function () {
             atk: 20,
             speed: 40,
             armor: 5,
-            spAtk: 15,
-            resistance: 5
+            spAtk: 20,
+            resistance: 5,
+
         }
         $.post("/api/fighters", fightTest)
     }
-    displayFighters()
+    displayFighters();
+    getFighters()
+    function getFighters() {
+        $.get("/api/fighters", function (data) {
+            fighterList = data;
+            postFighters();
+        })
+    }
+    function postFighters() {
+        $(".display").append("name: " + fighterList[0].name + " Atk: " + fighterList[0].atk)
+        $(".display").append("<img src='" + fighterList[0].photo + "'>")
+    }
 
 })
