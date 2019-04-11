@@ -22,4 +22,14 @@ module.exports = function(app) {
       res.json(data);
     });
   });
+
+  app.put("/api/update", function(req, res) {
+    db.Fighter.update(req.body, {
+      where: {
+        id: req.body.id
+      }
+    }).then(function(data) {
+      res.json(data);
+    });
+  });
 };
