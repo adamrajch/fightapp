@@ -12,7 +12,6 @@ module.exports = function (sequelize, DataTypes) {
         experience: { type: DataTypes.INTEGER, defaultValue: 0 },
         level: { type: DataTypes.INTEGER, defaultValue: 1 }
 
-
     });
     return Fighter;
 };
