@@ -13,8 +13,16 @@ module.exports = function (sequelize, DataTypes) {
         level: { type: DataTypes.INTEGER, defaultValue: 1 },
         class: { type: DataTypes.STRING, defaultValue: "Warrior" },
         win: { type: DataTypes.INTEGER, defaultValue: 0 },
-        loss: { type: DataTypes.INTEGER, defaultValue: 0 },
-
+        loss: { type: DataTypes.INTEGER, defaultValue: 0 }
     });
+
+
+
+    Fighter.associate = function (models) {
+        postMessage.belongsTo(models.User, {
+            foreignKey: { allowNull: false }
+        });
+    };
+
     return Fighter;
 };
