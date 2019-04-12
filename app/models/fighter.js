@@ -10,7 +10,10 @@ module.exports = function (sequelize, DataTypes) {
         resistance: { type: DataTypes.INTEGER, allowNull: false },
         photo: { type: DataTypes.STRING, defaultValue: "../images/default.jpg" },
         experience: { type: DataTypes.INTEGER, defaultValue: 0 },
-        level: { type: DataTypes.INTEGER, defaultValue: 1 }
+        level: { type: DataTypes.INTEGER, defaultValue: 1 },
+        class: { type: DataTypes.STRING, defaultValue: "Warrior" },
+        win: { type: DataTypes.INTEGER, defaultValue: 0 },
+        loss: { type: DataTypes.INTEGER, defaultValue: 0 },
 
     });
     return Fighter;
