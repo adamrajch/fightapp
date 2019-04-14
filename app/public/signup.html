@@ -8,27 +8,46 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" rel="stylesheet">
+    <link href="css/styleSignUp.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
     <title>Document</title>
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="/">Fight</a>
+        <a class="nav-link" href="/profile">Profile</a>
+        <a class="nav-link" href="/signup">Sign Up</a>
+        <a class="nav-link" href="/search">Search</a>
+        <a class="nav-link" href="/fight">Fight Now</a>
+
+    </nav>
+
     <div class="container">
         <div class="jumbotron">
-            <h1 class="display-4">CREATE YOUR FIGHTER</h1>
+            <h1 class="display-4">CHOOSE YOUR CLASS</h1>
             <p class="lead">Different fighter classes have different strengths and weaknesses. Chose wisely!</p>
             <hr class="my-4">
-            <a class="btn btn-primary btn-lg" role="button" id="showClasses">Begin</a>
+            <form id="formChar">
+                Username: <input type="text" id="charName" name="name"><br>
+                <!-- <input type="submit" value="Submit"> -->
+            </form>
+            <button class="btn btn-primary btn-lg" role="button" id="showClasses">Begin</button>
         </div>
 
         <div class="classSection">
 
         </div>
+        <div class="chosen">
 
+        </div>
     </div>
 
 
-    <script src="./js/app.js" type="text/javascript"></script>
-    <script src="./js/search.js" type="text/javascript"></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js"
+        integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+    <script src="./js/create.js" type="text/javascript"></script>
 </body>
 
 </html>

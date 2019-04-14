@@ -18,11 +18,11 @@ module.exports = function (sequelize, DataTypes) {
 
 
 
-    Fighter.associate = function (models) {
-        postMessage.belongsTo(models.User, {
-            foreignKey: { allowNull: false }
-        });
-    };
+    // Fighter.associate = function (models) {
+    //     postMessage.belongsTo(models.User, {
+    //         foreignKey: { allowNull: false }
+    //     });
+    // };
 
     return Fighter;
 };
