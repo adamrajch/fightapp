@@ -12,11 +12,11 @@ module.exports = function(sequelize, DataTypes) {
     level: { type: DataTypes.INTEGER, defaultValue: 1 }
   });
 
-  Fighter.associate = function(models) {
-    postMessage.belongsTo(models.User, {
-      foreignKey: { allowNull: false }
-    });
-  };
+  //   Fighter.associate = function(models) {
+  // postMessage.belongsTo(models.User, {
+  //   foreignKey: { allowNull: false }
+  // });
+  //   };
 
   return Fighter;
 };
