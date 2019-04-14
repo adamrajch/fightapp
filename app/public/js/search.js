@@ -53,8 +53,8 @@ $(document).ready(function () {
     $(".display").empty();
     var fighterClass = b;
     $.get("/api/classes/" + fighterClass, function (data) {
-      for (let i = 0; i < data.length; i++) {
-        createFighterCard(data[i])
+      for (let i = data.length - 1; data.length > -1; i--) {
+        createFighterCard(data[i]);
       }
     })
   }
@@ -63,7 +63,8 @@ $(document).ready(function () {
     var fighter = b;
     var upName = b.class
     upName = upName.toUpperCase()
-    var card = `<div class="card classCard" style="width: 18rem;">
+    var card =
+      `<div class="card classCard" style="width: 18rem;">
     <img src="${fighter.photo}" class="card-img-top" style="height: 18rem;" alt="your fighter">
     <div class="card-body">
     <h1 class="username">${fighter.name}</h1>
@@ -79,6 +80,7 @@ $(document).ready(function () {
         <li>Win: ${fighter.win} </li>
         <li>Losses: ${fighter.loss} </li>
         </ul>
+        <button class="challenge">Challenge</button>
     </div>
 </div>`;
     $(".display").append(card);

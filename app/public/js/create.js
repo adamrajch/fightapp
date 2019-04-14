@@ -37,7 +37,7 @@ $(document).ready(function () {
             armor: 2,
             spAtk: 25,
             resistance: 10,
-            photo: "../images/default.jpg",
+            photo: "../images/mage.jpg",
             class: "mage",
 
         },
@@ -49,7 +49,7 @@ $(document).ready(function () {
             armor: 3,
             spAtk: 30,
             resistance: 15,
-            photo: "../images/default.jpg",
+            photo: "../images/warlock.jpg",
             class: "warlock",
 
         },
@@ -61,7 +61,7 @@ $(document).ready(function () {
             armor: 1,
             spAtk: 5,
             resistance: 0,
-            photo: "../images/default.jpg",
+            photo: "../images/berserker.jpg",
             class: "berserker",
 
         },
@@ -73,7 +73,7 @@ $(document).ready(function () {
             armor: 2,
             spAtk: 5,
             resistance: 10,
-            photo: "../images/default.jpg",
+            photo: "../images/swordmaster.jpg",
             class: "swordmaster",
 
         }
