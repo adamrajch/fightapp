@@ -97,3 +97,13 @@ button{
     border-radius: 10%;
     border: goldenrod;
 }
+#formChar{
+    font-size: 24px;
+}
+#imageForm{
+    color:white;
+    font-size:24px;
+}
+#imgBtn{
+    margin-top: 15px;
+}

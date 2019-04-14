@@ -62,7 +62,7 @@ $(document).ready(function () {
             spAtk: 5,
             resistance: 0,
             photo: "../images/default.jpg",
-            class: "berserk",
+            class: "berserker",
 
         },
         swordmaster = {
@@ -85,6 +85,7 @@ $(document).ready(function () {
         console.log(username)
         $("#formChar").empty();
         $("#showClasses").hide();
+        $("#formChar").text(`Greetings fighter ${username}!`);
         console.log('working')
         for (let i = 0; i < characters.length; i++) {
             var classText = `<div class="card classCard" style="width: 18rem;">
@@ -105,6 +106,7 @@ $(document).ready(function () {
         $(".lead").text("Smash that fight button")
         $(".classSection").empty();
         createProfileCard(classType)
+        addPic();
     })
     function createProfileCard(b) {
         var type = b;
@@ -113,7 +115,7 @@ $(document).ready(function () {
             chosen = warrior;
             chosen.name = username;
             var card = `<div class="card classCard" style="width: 18rem;">
-            <img src="../images/default.jpg" class="card-img-top" alt="your ">
+            <img src="${warrior.photo}" class="card-img-top" alt="your ">
             <div class="card-body">
             <h1 class="username">${username}</h1>
                 <h5 class="card-title">${warrior.class} Class Lvl. 1</h5>
@@ -151,8 +153,7 @@ $(document).ready(function () {
                 </ul>
                 <a href="/"><button class="goHome">Fight</button></a>
             </div>
-        </div>
-        <div class="chosenKnight">CONGRATULATIONS</div>`;
+        </div>`;
 
             $(".classSection").append(card);
 
@@ -183,7 +184,7 @@ $(document).ready(function () {
             chosen = warlock;
             chosen.name = username;
             var card = `<div class="card classCard" style="width: 18rem;">
-            <img src="${warlock.class}" class="card-img-top" alt="your ">
+            <img src="${warlock.photo}" class="card-img-top" alt="your ">
             <div class="card-body">
             <h1 class="username">${username}</h1>
                 <h5 class="card-title">${warlock.class} Class Lvl.1</h5>
@@ -205,7 +206,7 @@ $(document).ready(function () {
             chosen = berserker;
             chosen.name = username;
             var card = `<div class="card classCard" style="width: 18rem;">
-            <img src="${berserker.class}" class="card-img-top" alt="your ">
+            <img src="${berserker.photo}" class="card-img-top" alt="your ">
             <div class="card-body">
             <h1 class="username">${username}</h1>
                 <h5 class="card-title">${berserker.class} Class Lvl.1</h5>
@@ -227,7 +228,7 @@ $(document).ready(function () {
             chosen = swordmaster;
             chosen.name = username;
             var card = `<div class="card classCard" style="width: 24rem;">
-            <img src="${swordmaster.class}" class="card-img-top" alt="your ">
+            <img src="${swordmaster.photo}" class="card-img-top" alt="your ">
             <div class="card-body">
                 <h1 class="username">${username}</h1>
                 <h5 class="card-title">${swordmaster.class} Class Lvl.1</h5>
@@ -246,6 +247,7 @@ $(document).ready(function () {
             $(".classSection").append(card);
         }
 
+
     }
 
     $(document).on("click", ".goHome", function () {
@@ -254,6 +256,21 @@ $(document).ready(function () {
 
     })
 
+    function addPic() {
+        var form = `<form id="imageForm">
+        Upload Image URL: <input type="text" id="img" name="name"><br>
+        <button id="imgBtn">Upload</button>
+    </form>`
+        $(".classSection").append(form);
+    }
+    $(document).on("click", "#imgBtn", function (e) {
+        e.preventDefault();
+        var pic = $("#img").val();
+        chosen.photo = pic;
+        // console.log(chosen.photo);
+        $("#imageForm").append(`<div>Nice! Upload successful<div>`);
+        $(".card-img-top").attr("src", pic)
+    })
 
 
 })

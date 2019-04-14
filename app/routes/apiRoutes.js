@@ -10,8 +10,15 @@ module.exports = function (app) {
   });
 
   app.get("/api/fighters/:name", function (req, res) {
-    db.Fighter.findAll({ where: { name: req.params.name } }).then(function (data, err) {
-      if (err) throw err;
+    db.Fighter.findAll({ where: { name: req.params.name } }).then(function (data) {
+      // if (err) throw err;
+      res.json(data);
+    });
+  });
+
+  app.get("/api/classes/:class", function (req, res) {
+    db.Fighter.findAll({ where: { class: req.params.class } }).then(function (data) {
+      // if (err) throw err;
       res.json(data);
     });
   });

@@ -1,82 +1,85 @@
 $(document).ready(function () {
   var fighterList = [];
-
-  // function displayFighters() {
-  //   var fightTest = {
-  //     name: "Dark Sam",
-  //     hp: 100,
-  //     atk: 20,
-  //     speed: 40,
-  //     armor: 5,
-  //     spAtk: 20,
-  //     resistance: 5,
-
-  //   }
-  //   $.post("/api/fighters", fightTest)
-  // }
-  // displayFighters();
-  $(".searchChar").on("click", function (event) {
-    // event.preventDefault();
+  $("#selectBtn").on("click", function (e) {
+    console.log($("#selector").val())
+    e.preventDefault()
+    getFighterByClass($("#selector").val());
+  })
+  $("#displayAll").on("click", function (e) {
+    e.preventDefault()
+    getFighters();
+  })
+  $("#searchFighter").on("click", function (e) {
+    e.preventDefault();
     $(".error").empty()
     $(".display").empty();
-    var charName = $("#charName").val()
+    var charName = $("#searchGuy").val()
+    console.log(charName)
     $.get("/api/fighters/" + charName, function (data, err) {
       console.log(err)
       console.log(data)
-      if (err) {
+      if (data.length == 0) {
         console.log(err)
-        $(".error").text("That character does not exist! Search a different name")
+        $(".error").text("That fighter does not exist! Search a different name")
         throw err;
       }
       else {
         createFighterCard(data[0]);
       }
-
-
-
     })
-
-
   })
-  getFighters()
+  $('#searchGuy').keypress(function (e) {
+
+    if (e.which == 13) {//Enter key pressed
+      e.preventDefault()
+      $('#searchFighter').click();//Trigger search button click event
+    }
+  });
+
   function getFighters() {
     $.get("/api/fighters", function (data) {
+
+
       fighterList = data;
-      postFighters();
+
+      for (let i = data.length - 1; data.length > -1; i--) {
+        createFighterCard(data[i]);
+      }
+      // postFighters();
     })
   }
-  function postFighters() {
-    for (let i = 0; i < fighterList.length; i++) {
 
-      createFighterCard(fighterList[i]);
-
-    }
+  function getFighterByClass(b) {
+    $(".display").empty();
+    var fighterClass = b;
+    $.get("/api/classes/" + fighterClass, function (data) {
+      for (let i = 0; i < data.length; i++) {
+        createFighterCard(data[i])
+      }
+    })
   }
 
   function createFighterCard(b) {
     var fighter = b;
-    var card = `<div class="max-w-md w-full lg:flex charCard">
-  <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('${fighter.photo}')" title="Woman holding a mug">
-  </div>
-  <div class="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-    <div class="mb-8">
-      <div class="text-black font-bold text-xl mb-2">${fighter.name}</div>
-      <p class="text-grey-darker text-base">Level: ${fighter.level}</p>
-      <p class="text-grey-darker text-base">HP: ${fighter.hp}</p>
-      <p class="text-grey-darker text-base">Attack: ${fighter.atk}</p>
-      <p class="text-grey-darker text-base">Sp Attack: ${fighter.spAtk}</p>
-      <p class="text-grey-darker text-base">Speed: ${fighter.speed}</p>
-      <p class="text-grey-darker text-base">Armor: ${fighter.armor}</p>
-      <p class="text-grey-darker text-base">Speed: ${fighter.resistance}</p>
+    var upName = b.class
+    upName = upName.toUpperCase()
+    var card = `<div class="card classCard" style="width: 18rem;">
+    <img src="${fighter.photo}" class="card-img-top" style="height: 18rem;" alt="your fighter">
+    <div class="card-body">
+    <h1 class="username">${fighter.name}</h1>
+        <h5 class="card-title">${upName} Class Lvl.1</h5>
+        <p class="card-text">Stats</p>
+        <ul>
+        <li>HP: ${fighter.hp} </li>
+        <li>Attack: ${fighter.atk} </li>
+        <li>Sp Atttack: ${fighter.spAtk} </li>
+        <li>Speed: ${fighter.speed} </li>
+        <li>Armor: ${fighter.armor} </li>
+        <li>Resistance: ${fighter.resistance} </li>
+        <li>Win: ${fighter.win} </li>
+        <li>Losses: ${fighter.loss} </li>
+        </ul>
     </div>
-    <div class="flex items-center">
-      <img class="w-10 h-10 rounded-full mr-4 fighterCardPhoto" src="${fighter.photo}" alt="">
-      <div class="text-sm">
-        <p class="text-black leading-none">Username Holder</p>
-        <p class="text-grey-dark">${fighter.createdAt}</p>
-      </div>
-    </div>
-  </div>
 </div>`;
     $(".display").append(card);
   }
