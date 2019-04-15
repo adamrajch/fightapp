@@ -1,0 +1,85 @@
+body, html{
+    min-height: 100%;
+    /* background-size: cover; */
+}
+
+body{
+    font-family: 'Cinzel', serif;
+    background-image: url(../images/signup.jpg);
+    /* background-size: cover; */
+    background-repeat: repeat;
+}
+.classCard{
+    display: inline-block;
+    margin-right: 5%;
+    margin-bottom: 20px;
+    font-size: 14px;
+    background-color:black;
+    float: left;
+    border: 3px solid rgb(245, 193, 63);
+    padding:5px;
+}   
+.card-title{
+    font-size: 16px;
+    font-weight: bolder;
+    color: goldenrod;
+}
+.card-body, #formChar{
+    font-weight: bolder;
+    color: goldenrod;
+}
+
+button{
+    border-radius: 20%;
+    color:goldenrod;
+
+}
+
+.navbar{
+    margin-bottom: 40px;
+    background-image: url(../images/darkgradient.jpg);
+    background-image: cover;
+    
+}
+.navbar-brand{
+    color:goldenrod;
+    font-size: 28px;
+}
+#charName{
+    border-radius: 10%;
+    border: goldenrod;
+}
+
+.formSearch{
+   font-size: 24px;
+    color:white;
+    margin-bottom:20px;
+}
+.display{
+ min-height:100%;
+}
+#searchGuy{
+    width:400px;
+}
+#selector{
+    width:400px;
+}
+.error{
+    font-size: 24px;
+    color:white;
+}
+#displayAll{
+    margin-left: 20px;
+}
+#selectBtn{
+    margin-top:15px;
+}
+.challenge{
+    background-color:goldenrod;
+    color:white;
+    margin-left:4rem;
+}
+ul {
+    list-style-type: none;
+    font-size:18px;
+  }
