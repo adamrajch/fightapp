@@ -45,23 +45,29 @@ module.exports = function(app) {
 
   app.post("/api/fighters/:type", function(req, res) {
     var yee = req.params.type;
-    db.Fighter.create({
-      name: req.body.name,
-      hp: req.body.hp,
-      atk: req.body.atk,
-      speed: req.body.speed,
-      armor: req.body.armor,
-      spAtk: req.body.spAtk,
-      resistance: req.body.resistance,
-      photo: req.body.photo,
-      class: yee
-      // experience: { type: DataTypes.INTEGER, defaultValue: 0 },
-      // level: { type: DataTypes.INTEGER, defaultValue: 1 },
-      // class: { type: DataTypes.STRING, defaultValue: yee },
-      // win: { type: DataTypes.INTEGER, defaultValue: 0 },
-      // loss: { type: DataTypes.INTEGER, defaultValue: 0 }
-    }).then(function(data) {
-      res.json(data);
+    db.User.findAll({ where: { username: req.body.name } }).then(function(
+      data
+    ) {
+      console.log("");
+      db.Fighter.create({
+        name: req.body.name,
+        hp: req.body.hp,
+        atk: req.body.atk,
+        speed: req.body.speed,
+        armor: req.body.armor,
+        spAtk: req.body.spAtk,
+        resistance: req.body.resistance,
+        photo: req.body.photo,
+        class: yee,
+        UserId: data[0].id //user id here
+        // experience: { type: DataTypes.INTEGER, defaultValue: 0 },
+        // level: { type: DataTypes.INTEGER, defaultValue: 1 },
+        // class: { type: DataTypes.STRING, defaultValue: yee },
+        // win: { type: DataTypes.INTEGER, defaultValue: 0 },
+        // loss: { type: DataTypes.INTEGER, defaultValue: 0 }
+      }).then(function(data) {
+        res.json(data);
+      });
     });
   });
 };
