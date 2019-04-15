@@ -48,7 +48,7 @@ module.exports = function(app) {
     db.User.findAll({ where: { username: req.body.name } }).then(function(
       data
     ) {
-      console.log("");
+      console.log(data[0].id);
       db.Fighter.create({
         name: req.body.name,
         hp: req.body.hp,
