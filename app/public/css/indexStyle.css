@@ -1,12 +1,12 @@
 body, html{
-    /* min-height: 100%;
+    min-height: 100%;
     background-image: url(../images/signup.jpg);
-    background-size: cover; */
+    background-size: cover;
 }
 
 body{
     font-family: 'Cinzel', serif;
-    /* text-align: center; */
+
 }
 .hero-section {
     background-image: url(../images/displayImage.jpg);
@@ -40,7 +40,7 @@ body{
   }
 
 
-  
+
 .navbar{
     margin-bottom: 0px;
     background-image: url(../images/darkgradient.jpg);
