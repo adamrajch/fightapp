@@ -7,26 +7,33 @@ $(document).ready(function () {
   })
   $("#displayAll").on("click", function (e) {
     e.preventDefault()
+    $(".display").empty();
     getFighters();
   })
   $("#searchFighter").on("click", function (e) {
     e.preventDefault();
-    $(".error").empty()
-    $(".display").empty();
-    var charName = $("#searchGuy").val()
-    console.log(charName)
-    $.get("/api/fighters/" + charName, function (data, err) {
-      console.log(err)
-      console.log(data)
-      if (data.length == 0) {
+    // console.log($("#searchGuy").val())
+    if ($("#searchGuy").val().trim() == "") {
+      $("#searchGuy").attr("placeholder", "Enter a real name >:(")
+    }
+    else {
+      $(".error").empty()
+      $(".display").empty();
+      var charName = $("#searchGuy").val()
+      console.log(charName)
+      $.get("/api/fighters/" + charName, function (data, err) {
         console.log(err)
-        $(".error").text("That fighter does not exist! Search a different name")
-        throw err;
-      }
-      else {
-        createFighterCard(data[0]);
-      }
-    })
+        console.log(data)
+        if (data.length == 0) {
+          console.log(err)
+          $(".error").text("That fighter does not exist! Search a different name")
+          throw err;
+        }
+        else {
+          createFighterCard(data[0]);
+        }
+      })
+    }
   })
   $('#searchGuy').keypress(function (e) {
 

@@ -81,24 +81,38 @@ $(document).ready(function () {
 
 
     $(document).on("click", "#showClasses", function () {
-        username = $("#charName").val();
-        console.log(username)
-        $("#formChar").empty();
-        $("#showClasses").hide();
-        $("#formChar").text(`Greetings fighter ${username}!`);
-        console.log('working')
-        for (let i = 0; i < characters.length; i++) {
-            var classText = `<div class="card classCard" style="width: 18rem;">
-            <img src="${characters[i].photo}" class="card-img-top" style="height: 18rem;" alt="Warrior">
-            <div class="card-body">
-                <h5 class="card-title">${characters[i].class}</h5>
-                <p class="card-text">${characters[i].description}</p>
-                <button class="fcBtn" data-type="${characters[i].class}">Select</button>
-            </div>
-        </div>`
-            $(".classSection").append(classText);
+        if ($("#charName").val().trim() == "") {
+            $("#charName").attr("placeholder", "Enter a name!")
         }
+        else {
+            username = $("#charName").val();
+            console.log(username)
+            $("#formChar").empty();
+            $("#showClasses").hide();
+            $("#formChar").text(`Greetings fighter ${username}!`);
+            console.log('working')
+            for (let i = 0; i < characters.length; i++) {
+                var classText = `<div class="card classCard" style="width: 18rem;">
+                <img src="${characters[i].photo}" class="card-img-top" style="height: 18rem;" alt="Warrior">
+                <div class="card-body">
+                    <h5 class="card-title">${characters[i].class}</h5>
+                    <p class="card-text">${characters[i].description}</p>
+                    <button class="fcBtn" data-type="${characters[i].class}">Select</button>
+                </div>
+            </div>`
+                $(".classSection").append(classText);
+            }
+        }
+
     })
+    $('#charName').keypress(function (e) {
+
+        if (e.which == 13) {//Enter key pressed
+            e.preventDefault()
+            $('#showClasses').click();//Trigger search button click event
+        }
+    });
+
     $(document).on("click", ".fcBtn", function () {
         var classType = $(this).attr("data-type");
         chosen.class = classType;
