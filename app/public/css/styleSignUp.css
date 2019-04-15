@@ -45,19 +45,16 @@ body{
     font-size: 24px;
     font-weight: bolder;
     color: goldenrod;
+    
 }
-button{
-    border-radius: 20%;
-    color:goldenrod;
 
-}
 #showClasses{
     border-radius: 20%;
-    background-color:goldenrod;
+  
     /* background-color:whitesmoke; */
     margin-top: 30px;
+    background-color:rgb(42,56,93);
     border-color: goldenrod;
-    color:white;
 }
 .chosen{
     display: inline-block;
@@ -106,4 +103,10 @@ button{
 }
 #imgBtn{
     margin-top: 15px;
+}
+button{
+    border-radius: 20%;
+    color:goldenrod;
+    background-color:rgb(42,56,93);
+    border-color: goldenrod;
 }
