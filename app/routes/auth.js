@@ -3,7 +3,7 @@
 module.exports = function(app, passport) {
   app.get("/signup");
 
-  app.get("/signin");
+  app.get("/login");
 
   app.post(
     "/signup",
@@ -14,7 +14,7 @@ module.exports = function(app, passport) {
     })
   );
 
-  app.get("/dashboard", isLoggedIn);
+  app.get("/", isLoggedIn);
 
   app.get("/logout");
 
@@ -23,13 +23,13 @@ module.exports = function(app, passport) {
     passport.authenticate("local-signin", {
       successRedirect: "/dashboard",
 
-      failureRedirect: "/signin"
+      failureRedirect: "/login"
     })
   );
 
   function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) return next();
 
-    res.redirect("/signin");
+    res.redirect("/login");
   }
 };
