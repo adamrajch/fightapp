@@ -25,16 +25,7 @@ body{
   .info-container{
       text-align: center;
   }
-  .info-section {
-    background-image: url(../images/gradient.jpg);
-    height: 50vh;
-    width: 100%; 
-    margin-bottom: 50px;
-    background-repeat: no-repeat;
-    margin: 0;
-    padding: 0;
-    background-size:100% 100%;
-  }
+ 
   .card-deck{
       align-content: center;
       
@@ -43,12 +34,12 @@ body{
     text-decoration: underline;
   }
 
-  .container{
-    align-content: center;
-  }
-  /* .card-text{
-    
-  } */
+  .jumbotron{
+    background-image: url(../images/gradient.jpg);
+    background-size:cover;
+    border: 3px solid rgb(245, 193, 63);
+    /* margin-bottom: 10px; */
+}
 
 
 
