@@ -39,6 +39,13 @@ body{
     text-decoration: underline;
   }
 
+  .container{
+    align-content: center;
+  }
+  /* .card-text{
+    
+  } */
+
 
 
 .navbar{
