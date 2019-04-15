@@ -2,53 +2,48 @@ var db = require("../models");
 
 // Routes
 // =============================================================
-module.exports = function (app) {
-  app.get("/api/fighters", function (req, res) {
-    db.Fighter.findAll({}).then(function (data) {
+module.exports = function(app) {
+  app.get("/api/fighters", function(req, res) {
+    db.Fighter.findAll({}).then(function(data) {
       res.json(data);
     });
   });
 
-  app.get("/api/fighters/:name", function (req, res) {
-    db.Fighter.findAll({ where: { name: req.params.name } }).then(function (data) {
+  app.get("/api/fighters/:name", function(req, res) {
+    db.Fighter.findAll({ where: { name: req.params.name } }).then(function(
+      data
+    ) {
       // if (err) throw err;
       res.json(data);
     });
   });
 
-  app.get("/api/classes/:class", function (req, res) {
-    db.Fighter.findAll({ where: { class: req.params.class } }).then(function (data) {
+  app.get("/api/classes/:class", function(req, res) {
+    db.Fighter.findAll({ where: { class: req.params.class } }).then(function(
+      data
+    ) {
       // if (err) throw err;
       res.json(data);
     });
   });
 
-<<<<<<< HEAD
   app.post("/api/users", function(req, res) {
     db.User.create(req.body).then(function(data) {
-=======
-  app.post("/api/fighters", function (req, res) {
-    db.Fighter.create(req.body).then(function (data) {
->>>>>>> master
       res.json(data);
     });
   });
 
-<<<<<<< HEAD
   app.put("/api/update", function(req, res) {
-=======
-  app.put("/api/update", function (req, res) {
->>>>>>> master
     db.Fighter.update(req.body, {
       where: {
         id: req.body.id
       }
-    }).then(function (data) {
+    }).then(function(data) {
       res.json(data);
     });
   });
 
-  app.post("/api/fighters/:type", function (req, res) {
+  app.post("/api/fighters/:type", function(req, res) {
     var yee = req.params.type;
     db.Fighter.create({
       name: req.body.name,
@@ -65,8 +60,8 @@ module.exports = function (app) {
       // class: { type: DataTypes.STRING, defaultValue: yee },
       // win: { type: DataTypes.INTEGER, defaultValue: 0 },
       // loss: { type: DataTypes.INTEGER, defaultValue: 0 }
-    }).then(function (data) {
+    }).then(function(data) {
       res.json(data);
-    })
-  })
+    });
+  });
 };

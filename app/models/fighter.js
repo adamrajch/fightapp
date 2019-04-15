@@ -16,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Fighter.associate = function(models) {
-    postMessage.belongsTo(models.User, {
+    Fighter.belongsTo(models.User, {
       foreignKey: { allowNull: false }
     });
   };
