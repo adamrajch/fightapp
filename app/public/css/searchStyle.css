@@ -29,11 +29,6 @@ body{
     color: goldenrod;
 }
 
-button{
-    border-radius: 20%;
-    color:goldenrod;
-
-}
 
 .navbar{
     margin-bottom: 40px;
@@ -83,3 +78,9 @@ ul {
     list-style-type: none;
     font-size:18px;
   }
+  button{
+    border-radius: 20%;
+    color:goldenrod;
+    background-color:rgb(42,56,93);
+    border-color: goldenrod;
+}
