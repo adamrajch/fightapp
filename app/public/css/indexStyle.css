@@ -1,5 +1,6 @@
 body, html{
     min-height: 100%;
+    background-image: url(../images/signup.jpg);
    
 }
 
@@ -34,14 +35,6 @@ body{
     padding: 0;
     background-size:100% 100%;
   }
-  .card-deck{
-      align-content: center;
-      
-  }
-  .card-title{
-    text-decoration: underline;
-  }
-
 
   
 .navbar{
@@ -55,7 +48,30 @@ body{
     font-size: 28px;
 }
 
-.main-signup-button{
-    border: black;
 
+.jumbotron{
+    background-image: url(../images/gradient.jpg);
+    background-size:cover;
+    border: 3px solid rgb(245, 193, 63);
+    /* margin-bottom: 10px; */
+}
+.display-4{
+    font-size: 84px;
+    font-weight: bolder;
+    color: goldenrod;
+}
+.lead, .header{
+    font-size: 24px !important;
+    font-weight: bolder !important;
+    color: goldenrod !important;
+    
+}
+
+.container{
+    text-align: center;
+}
+
+.my-4{
+
+    color: goldenrod;
 }
