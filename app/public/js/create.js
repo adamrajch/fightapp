@@ -3,7 +3,7 @@ $(document).ready(function() {
   var chosen = {};
   var newUser = {
     username: "",
-    password: "test"
+    password: ""
   };
 
   var characters = [
@@ -77,6 +77,7 @@ $(document).ready(function() {
 
   $(document).on("click", "#showClasses", function() {
     username = $("#charName").val();
+    newUser.password = $("#password").val();
     newUser.username = username;
 
     if (
@@ -86,15 +87,19 @@ $(document).ready(function() {
     ) {
       $("#charName").attr("placeholder", "Enter a name!");
     } else {
-      $.post("/api/users/", newUser, function() {
-        console.log(username);
+      $.get("api/users/" + username, function(data) {
+        console.log(data.length);
+        if (data.length == 0) {
+          $.post("/signup", newUser, function(pass) {
+            console.log(pass);
+            console.log(username);
 
-        $("#formChar").empty();
-        $("#showClasses").hide();
-        $("#formChar").text(`Greetings fighter ${username}!`);
-        console.log("working");
-        for (let i = 0; i < characters.length; i++) {
-          var classText = `<div class="card classCard" style="width: 18rem;">
+            $("#formChar").empty();
+            $("#showClasses").hide();
+            $("#formChar").text(`Greetings fighter ${username}!`);
+            console.log("working");
+            for (let i = 0; i < characters.length; i++) {
+              var classText = `<div class="card classCard" style="width: 18rem;">
                 <img src="${
                   characters[i].photo
                 }" class="card-img-top" style="height: 18rem;" alt="Warrior">
@@ -106,7 +111,9 @@ $(document).ready(function() {
                     }">Select</button>
                 </div>
             </div>`;
-          $(".classSection").append(classText);
+              $(".classSection").append(classText);
+            }
+          });
         }
       });
     }

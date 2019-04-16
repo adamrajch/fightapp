@@ -40,8 +40,18 @@ app.use(passport.session()); // persistent login sessions
 // Routes
 // =============================================================
 require("./app/routes/apiRoutes")(app);
+require("./app/routes/auth")(app, passport);
+
 require("./app/routes/htmlRoutes")(app);
 require("./app/config/passport")(passport);
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
 
 // Starts the server to begin listening
 
