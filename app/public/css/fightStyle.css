@@ -81,7 +81,7 @@ body{
     font-weight: bolder;
 }
 .navbar{
-    margin-bottom: 40px;
+    /* margin-bottom: 40px; */
     background-image: url(../images/darkgradient.jpg);
     background-image: cover;
     
@@ -109,4 +109,11 @@ button{
     color:goldenrod;
     background-color:rgb(42,56,93);
     border-color: goldenrod;
+}
+.container{
+    margin-top:0px;
+   
+}
+.col{
+    margin-left:8rem;
 }
