@@ -1,7 +1,7 @@
 body, html{
-    min-height: 100%; 
-    /* background-image: url(../images/signup.jpg); */
-    /* background-size: cover;
+    min-height: 100%;
+    background-image: url(../images/signup.jpg);
+    background-size: cover;
 }
 
 body{
@@ -16,7 +16,6 @@ body{
     border: 3px solid rgb(245, 193, 63);
     /* margin-bottom: 10px; */
 }
-
 .classCard{
     display: inline-block;
     margin-right: 5%;
@@ -82,7 +81,7 @@ body{
     font-weight: bolder;
 }
 .navbar{
-    margin-bottom: 0px;
+    margin-bottom: 40px;
     background-image: url(../images/darkgradient.jpg);
     background-image: cover;
     
@@ -110,4 +109,10 @@ button{
     color:goldenrod;
     background-color:rgb(42,56,93);
     border-color: goldenrod;
+}
+.header{
+    font-size: 24px !important;
+    font-weight: bolder !important;
+    color: goldenrod !important;
+    
 }
