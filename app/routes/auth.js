@@ -18,6 +18,14 @@ module.exports = function(app, passport) {
 
   app.get("/logout");
 
+  app.get(
+    "/api/profile",
+    passport.authenticate("cookie", { session: false }),
+    function(req, res) {
+      res.json(req.user);
+    }
+  );
+
   app.post(
     "/login",
     passport.authenticate("local-signin", {
