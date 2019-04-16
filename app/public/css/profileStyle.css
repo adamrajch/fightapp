@@ -7,79 +7,7 @@ body, html{
 body{
     font-family: 'Cinzel', serif;
 }
-.goHome{
-    margin-top: 10px;
-}
-.jumbotron{
-    background-image: url(../images/gradient.jpg);
-    background-size:cover;
-    border: 3px solid rgb(245, 193, 63);
-    /* margin-bottom: 10px; */
-}
-.classCard{
-    display: inline-block;
-    margin-right: 5%;
-    margin-bottom: 20px;
-    font-size: 20px;
-    background-color:black;
-    float: left;
-    border: 3px solid rgb(245, 193, 63);
-    padding:5px;
-}   
-.card-title{
-    font-size: 24px;
-    font-weight: bolder;
-    color: goldenrod;
-}
-.card-body, #formChar{
-    font-weight: bolder;
-    color: goldenrod;
-}
-.display-4{
-    font-size: 84px;
-    font-weight: bolder;
-    color: goldenrod;
-}
 
-.lead{
-    font-size: 24px;
-    font-weight: bolder;
-    color: goldenrod;
-    
-}
-
-#showClasses{
-    border-radius: 20%;
-  
-    /* background-color:whitesmoke; */
-    margin-top: 30px;
-    background-color:rgb(42,56,93);
-    border-color: goldenrod;
-}
-.chosen{
-    display: inline-block;
-    float:left;
-    /* background-image: url(../images/knight.jpg) */
-}
-.classSection{
-    display: inline-block;
-    clear: both;
-    width:100%;
-}
-.chosenKnight{
-    width: 600px;
-    height:480px;
-    background-image: url(../images/knight.jpg);
-    display: inline-block;  
-    float: left;
-    color: goldenrod;
-    font-size: 46px;
-    font-weight: bolder;
-}
-.username{
-    font-size: 46px;
-    font-weight: bolder;
-}
 .navbar{
     margin-bottom: 40px;
     background-image: url(../images/darkgradient.jpg);
@@ -89,24 +17,4 @@ body{
 .navbar-brand{
     color:goldenrod;
     font-size: 28px;
-}
-#charName{
-    border-radius: 10%;
-    border: goldenrod;
-}
-#formChar{
-    font-size: 24px;
-}
-#imageForm{
-    color:white;
-    font-size:24px;
-}
-#imgBtn{
-    margin-top: 15px;
-}
-button{
-    border-radius: 20%;
-    color:goldenrod;
-    background-color:rgb(42,56,93);
-    border-color: goldenrod;
 }
