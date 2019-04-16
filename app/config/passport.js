@@ -1,5 +1,6 @@
 var bCrypt = require("bcrypt-nodejs");
 var LocalStrategy = require("passport-local").Strategy;
+var db = require("../models");
 
 module.exports = function(passport, user) {
   //LOCAL SIGNIN
@@ -23,7 +24,7 @@ module.exports = function(passport, user) {
           return bCrypt.compareSync(password, userpass);
         };
 
-        User.findOne({
+        db.User.findOne({
           where: {
             username: username
           }
@@ -71,15 +72,17 @@ module.exports = function(passport, user) {
           return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
         };
 
-        User.findOne({
+        var User = user;
+
+        db.User.findOne({
           where: {
             username: username
           }
         }).then(function(user) {
           if (user) {
-            return done(null, false, {
-              message: "That username is already taken"
-            });
+            console.log("here");
+
+            return done(null, false);
           } else {
             var userPassword = generateHash(password);
 
@@ -89,7 +92,7 @@ module.exports = function(passport, user) {
               password: userPassword
             };
 
-            User.create(data).then(function(newUser, created) {
+            db.User.create(data).then(function(newUser, created) {
               if (!newUser) {
                 return done(null, false);
               }
