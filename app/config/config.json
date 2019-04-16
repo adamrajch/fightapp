@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "squisho",
+    "password": "root",
     "database": "fightersDB",
     "host": "127.0.0.1",
     "dialect": "mysql",
