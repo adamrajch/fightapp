@@ -9,7 +9,7 @@ body{
     /* background-size: cover; */
     background-repeat: repeat;
 }
-/* .classCard{
+.classCard{
     display: inline-block;
     margin-right: 5%;
     margin-bottom: 20px;
@@ -27,7 +27,7 @@ body{
 .card-body, #formChar{
     font-weight: bolder;
     color: goldenrod;
-} */
+}
 
 
 .navbar{
@@ -40,10 +40,10 @@ body{
     color:goldenrod;
     font-size: 28px;
 }
- /* #charName{
+ #charName{
     border-radius: 10%;
     border: goldenrod;
-}  */
+} 
 
 .formSearch{
    font-size: 24px;
@@ -69,11 +69,11 @@ body{
 #selectBtn{
     margin-top:15px;
 }
-/* .challenge{
+.challenge{
     background-color:goldenrod;
     color:white;
     margin-left:4rem;
-} */
+}
 ul {
     list-style-type: none;
     font-size:18px;
