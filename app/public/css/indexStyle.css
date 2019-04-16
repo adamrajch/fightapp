@@ -1,12 +1,16 @@
 body, html{
     min-height: 100%;
     background-image: url(../images/signup.jpg);
+<<<<<<< HEAD
    
+=======
+    background-size: cover;
+>>>>>>> 7485d003abc84853bae2615b58f2653ea0670246
 }
 
 body{
     font-family: 'Cinzel', serif;
-    /* text-align: center; */
+
 }
 .wrapper{
     display:block;
@@ -25,6 +29,7 @@ body{
   .info-container{
       text-align: center;
   }
+<<<<<<< HEAD
   .info-section {
     background-image: url(../images/gradient.jpg);
     height: 50vh;
@@ -35,8 +40,26 @@ body{
     padding: 0;
     background-size:100% 100%;
   }
+=======
+ 
+  .card-deck{
+      align-content: center;
+      
+  }
+  .card-title{
+    text-decoration: underline;
+  }
 
-  
+  .jumbotron{
+    background-image: url(../images/gradient.jpg);
+    background-size:cover;
+    border: 3px solid rgb(245, 193, 63);
+    /* margin-bottom: 10px; */
+}
+
+
+>>>>>>> 7485d003abc84853bae2615b58f2653ea0670246
+
 .navbar{
     margin-bottom: 0px;
     background-image: url(../images/darkgradient.jpg);
