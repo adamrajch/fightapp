@@ -66,7 +66,7 @@ module.exports = function(app) {
         // win: { type: DataTypes.INTEGER, defaultValue: 0 },
         // loss: { type: DataTypes.INTEGER, defaultValue: 0 }
       }).then(function(data) {
-        res.json(data);
+        res.redirect("/");
       });
     });
   });

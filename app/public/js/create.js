@@ -148,7 +148,7 @@ $(document).ready(function() {
                 <li>Armor: ${warrior.armor} </li>
                 <li>Resistance: ${warrior.resistance} </li>
                 </ul>
-                <a href="/"><button class="goHome">Fight</button></a>
+                <a><button class="goHome">Fight</button></a>
             </div>
         </div>`;
       $(".classSection").append(card);
@@ -169,7 +169,7 @@ $(document).ready(function() {
                 <li>Armor: ${knight.armor} </li>
                 <li>Resistance: ${knight.resistance} </li>
                 </ul>
-                <a href="/"><button class="goHome">Fight</button></a>
+                <a><button class="goHome">Fight</button></a>
             </div>
         </div>`;
 
@@ -191,7 +191,7 @@ $(document).ready(function() {
                 <li>Armor: ${mage.armor} </li>
                 <li>Resistance: ${mage.resistance} </li>
                 </ul>
-                <a href="/"><button class="goHome">Fight</button></a>
+                <a><button class="goHome">Fight</button></a>
             </div>
         </div>`;
       $(".classSection").append(card);
@@ -212,7 +212,7 @@ $(document).ready(function() {
                 <li>Armor: ${warlock.armor} </li>
                 <li>Resistance: ${warlock.resistance} </li>
                 </ul>
-                <a href="/"><button class="goHome">Fight</button></a>
+                <a><button class="goHome">Fight</button></a>
             </div>
         </div>`;
       $(".classSection").append(card);
@@ -233,7 +233,7 @@ $(document).ready(function() {
                 <li>Armor: ${berserker.armor} </li>
                 <li>Resistance: ${berserker.resistance} </li>
                 </ul>
-                <a href="/"><button class="goHome">Fight</button></a>
+                <a><button class="goHome">Fight</button></a>
             </div>
         </div>`;
       $(".classSection").append(card);
@@ -254,7 +254,7 @@ $(document).ready(function() {
                 <li>Armor: ${swordmaster.armor} </li>
                 <li>Resistance: ${swordmaster.resistance} </li>
                 </ul>
-                <a href="/"><button class="goHome">Fight</button></a>
+                <a><button class="goHome">Fight</button></a>
             </div>
         </div>`;
       $(".classSection").append(card);
@@ -263,7 +263,9 @@ $(document).ready(function() {
 
   $(document).on("click", ".goHome", function() {
     console.log(chosen);
-    $.post("/api/fighters/" + chosen.class, chosen);
+    $.post("/api/fighters/" + chosen.class, chosen, function() {
+      window.location.href = "/";
+    });
   });
 
   function addPic() {
