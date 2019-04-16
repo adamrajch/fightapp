@@ -48,7 +48,10 @@ require("./app/config/passport")(passport);
 var db = require("./app/models");
 db.sequelize.sync().then(function () {
   app.listen(process.env.PORT || 3000, function () {
-    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-
+    console.log(
+      "Express server listening on port %d in %s mode",
+      this.address().port,
+      app.settings.env
+    );
   });
 });
