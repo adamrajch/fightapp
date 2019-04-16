@@ -18,13 +18,10 @@ module.exports = function(app, passport) {
 
   app.get("/logout");
 
-  app.get(
-    "/api/profile",
-    passport.authenticate("cookie", { session: false }),
-    function(req, res) {
-      res.json(req.user);
-    }
-  );
+  app.get("/api/profile", function(req, res) {
+    console.log(req.user);
+    res.json(req.user);
+  });
 
   app.post(
     "/login",
