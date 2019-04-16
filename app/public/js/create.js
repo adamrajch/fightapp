@@ -91,7 +91,6 @@ $(document).ready(function() {
         console.log(data.length);
         if (data.length == 0) {
           $.post("/signup", newUser, function(pass) {
-            console.log(pass);
             console.log(username);
 
             $("#formChar").empty();

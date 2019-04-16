@@ -1,6 +1,7 @@
 var bCrypt = require("bcrypt-nodejs");
 var LocalStrategy = require("passport-local").Strategy;
 var db = require("../models");
+var CookieStrategy = require("passport-cookie").Strategy;
 
 module.exports = function(passport, user) {
   //LOCAL SIGNIN
@@ -105,5 +106,19 @@ module.exports = function(passport, user) {
         });
       }
     )
+  );
+
+  passport.use(
+    new CookieStrategy(function(token, done) {
+      User.findByToken({ token: token }, function(err, user) {
+        if (err) {
+          return done(err);
+        }
+        if (!user) {
+          return done(null, false);
+        }
+        return done(null, user);
+      });
+    })
   );
 };
