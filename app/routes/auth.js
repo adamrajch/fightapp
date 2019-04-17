@@ -1,4 +1,5 @@
 // var authController = require("../controllers/authcontroller.js");
+var db = require("../models");
 
 module.exports = function(app, passport) {
   app.get("/signup");
@@ -20,7 +21,11 @@ module.exports = function(app, passport) {
 
   app.get("/api/profile", function(req, res) {
     console.log(req.user);
-    res.json(req.user);
+    var fight = db.Fighter.findAll({ where: { UserId: req.user.id } }).then(
+      function(data) {
+        res.json(data[0]);
+      }
+    );
   });
 
   app.post(
