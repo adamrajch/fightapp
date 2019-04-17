@@ -91,7 +91,6 @@ $(document).ready(function() {
         console.log(data.length);
         if (data.length == 0) {
           $.post("/signup", newUser, function(pass) {
-            console.log(pass);
             console.log(username);
 
             $("#formChar").empty();
@@ -271,7 +270,7 @@ $(document).ready(function() {
   $(document).on("click", ".goHome", function() {
     console.log(chosen);
     $.post("/api/fighters/" + chosen.class, chosen, function() {
-      window.location.href = "/";
+      window.location.href = "/profile";
     });
   });
 

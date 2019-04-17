@@ -12,7 +12,8 @@ module.exports = function(sequelize, DataTypes) {
     level: { type: DataTypes.INTEGER, defaultValue: 1 },
     class: { type: DataTypes.STRING, defaultValue: "Warrior" },
     win: { type: DataTypes.INTEGER, defaultValue: 0 },
-    loss: { type: DataTypes.INTEGER, defaultValue: 0 }
+    loss: { type: DataTypes.INTEGER, defaultValue: 0 },
+    enemy: { type: DataTypes.INTEGER }
   });
 
   Fighter.associate = function(models) {

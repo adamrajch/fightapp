@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { ENOMEM } from "constants";
 
 $(document).ready(function () {
@@ -28,6 +29,39 @@ $(document).ready(function () {
         var p1 = a;
         var card = `<div class="card classCard" style="width: 18rem;">
       <img src="${p1.photo}" class="card-img-top" style="height: 18rem;" alt="your p1">
+=======
+$(document).ready(function() {
+  console.log("hello fight");
+  let player;
+  let enemy;
+  let playerFirst;
+  let eHp;
+  let pHp;
+  let atks;
+  let cpuAtks;
+
+  $.get("/api/profile", function(data, err) {
+    var p1 = data;
+    player = data;
+    $.get("/api/fighters/id/" + data.enemy, function(data) {
+      enemy = data[0];
+      console.log(data[0]);
+      //console.log(p1);
+      //console.log(data[1]);
+      displayPlayer(p1);
+      displayEnemy(enemy);
+      eHp = enemy.hp;
+      pHp = player.hp;
+      speedCalc();
+    });
+  });
+  function displayPlayer(a) {
+    var p1 = a;
+    var card = `<div class="card classCard" style="width: 18rem;">
+      <img src="${
+        p1.photo
+      }" class="card-img-top" style="height: 18rem;" alt="your p1">
+>>>>>>> master
       <div class="card-body">
       <div class="progress">
       <div class="progress-bar progress-bar-striped progress-bar-animated playerHP" role="progressbar"
@@ -48,11 +82,14 @@ $(document).ready(function () {
           </ul>
       </div>
   </div>`;
-        $(".playerCol").append(card);
-    }
-    function displayEnemy(a) {
-        var card = `<div class="card classCard" style="width: 18rem;">
-        <img src="${a.photo}" class="card-img-top" style="height: 18rem;" alt="your a">
+    $(".playerCol").append(card);
+  }
+
+  function displayEnemy(a) {
+    var card = `<div class="card classCard" style="width: 18rem;">
+        <img src="${
+          a.photo
+        }" class="card-img-top" style="height: 18rem;" alt="your a">
         <div class="card-body">
         <div class="progress">
         <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger enemyHP"
@@ -74,92 +111,78 @@ $(document).ready(function () {
             </ul>
         </div>
     </div>`;
-        $(".enemyCol").append(card);
+    $(".enemyCol").append(card);
+  }
+  function speedCalc() {
+    pSd = player.speed;
+    eSd = enemy.speed;
+
+    var calc = pSd / eSd;
+
+    if (calc < 1) {
+      playerFirst = false;
+    } else if (calc > 1) {
+      playerFirst = true;
+    } else {
+      var rnd = Math.floor(Math.random() * 2);
+      if (rnd === 0) {
+        playerFirst = true;
+      } else {
+        playerFirst = false;
+      }
     }
-    function speedCalc() {
 
-        pSd = player.speed;
-        eSd = enemy.speed;
-
-        var calc = pSd / eSd;
-
-        if (calc < 1) {
-            playerFirst = false;
-        }
-        else if (calc > 1) {
-            playerFirst = true;
-        }
-        else {
-            var rnd = Math.floor(Math.random() * 2);
-            if (rnd === 0) {
-                playerFirst = true;
-            }
-            else {
-                playerFirst = false;
-            }
-        }
-
-        if (calc < 2 && calc > 0.5) {
-            atks = 1;
-            cpuAtks = 1;
-        }
-        else if (calc >= 2) {
-            atks = 2;
-            cpuAtks = 1;
-        }
-        else if (calc <= 0.5) {
-            atks = 1;
-            cpuAtks = 2;
-        }
-
+    if (calc < 2 && calc > 0.5) {
+      atks = 1;
+      cpuAtks = 1;
+    } else if (calc >= 2) {
+      atks = 2;
+      cpuAtks = 1;
+    } else if (calc <= 0.5) {
+      atks = 1;
+      cpuAtks = 2;
     }
-    function damageDealtAtk() {
-        // var rndAtk = Math.floor(Math.random() * (player.atk + 2) + (player.atk - 2))
-        // var dmg = rndAtk - enemy.armor;
-        // eHp -= rndAtk - enemy.armor;
+  }
+  function damageDealtAtk() {
+    // var rndAtk = Math.floor(Math.random() * (player.atk + 2) + (player.atk - 2))
+    // var dmg = rndAtk - enemy.armor;
+    // eHp -= rndAtk - enemy.armor;
 
-        // var enemyrndAtk = Math.floor(Math.random() * (enemy.atk + 2) + (enemy.atk - 2))
-        // var edmg = enemyrndAtk - player.armor;
-        // pHp -= edmg;
+    // var enemyrndAtk = Math.floor(Math.random() * (enemy.atk + 2) + (enemy.atk - 2))
+    // var edmg = enemyrndAtk - player.armor;
+    // pHp -= edmg;
 
-        // var pLog = `<li class="list-group-item list-group-item-primary">${player.name} attacked for ${dmg} damage! ${enemy.name} has ${eHp} left!</li>`;
-        // var eLog = `<li class="list-group-item list-group-item-primary">${enemy.name} attacked for ${edmg} damage! ${player.name} has ${pHp} left!</li>`;
+    // var pLog = `<li class="list-group-item list-group-item-primary">${player.name} attacked for ${dmg} damage! ${enemy.name} has ${eHp} left!</li>`;
+    // var eLog = `<li class="list-group-item list-group-item-primary">${enemy.name} attacked for ${edmg} damage! ${player.name} has ${pHp} left!</li>`;
 
-        if (playerFirst) {
-            if (atks == 1 && cpuAtks == 1) {
-                playerAtk()
-                enemyAtk()
-            }
-            else if (atks == 2) {
-                playerAtk()
-                enemyAtk()
-                playerAtk()
-            }
-            else if (cpuAtks == 2) {
-                playerAtk()
-                enemyAtk()
-                enemyAtk()
-            }
-
-        }
-        else {
-            if (atks == 1 && cpuAtks == 1) {
-                enemyAtk()
-                playerAtk()
-            }
-            else if (atks == 2) {
-                enemyAtk()
-                playerAtk()
-                playerAtk()
-            }
-            else if (cpuAtks == 2) {
-                enemyAtk()
-                playerAtk()
-                enemyAtk()
-            }
-        }
-
+    if (playerFirst) {
+      if (atks == 1 && cpuAtks == 1) {
+        playerAtk();
+        enemyAction();
+      } else if (atks == 2) {
+        playerAtk();
+        enemyAction();
+        playerAtk();
+      } else if (cpuAtks == 2) {
+        playerAtk();
+        enemyAction();
+        enemyAction();
+      }
+    } else {
+      if (atks == 1 && cpuAtks == 1) {
+        enemyAction();
+        playerAtk();
+      } else if (atks == 2) {
+        enemyAction();
+        playerAtk();
+        playerAtk();
+      } else if (cpuAtks == 2) {
+        enemyAction();
+        playerAtk();
+        enemyAction();
+      }
     }
+<<<<<<< HEAD
     function playerAtk() {
         if (player.hp <= 0) {
             console.log("u died bro")
@@ -223,26 +246,124 @@ $(document).ready(function () {
     }
 
     // function damageDealtSpAtk(spattack, hp, res) {
+=======
+  }
 
-    // }
-    $(document).on("click", ".beginFight", function () {
-        fight();
-    })
+  function damageDealtSpAtk() {
+    // var rndAtk = Math.floor(Math.random() * (player.atk + 2) + (player.atk - 2))
+    // var dmg = rndAtk - enemy.armor;
+    // eHp -= rndAtk - enemy.armor;
 
-    function fight() {
-        var butts = ` <button type="button" class="btn btn-primary btn-lg pAttack">Physical</button>
-        <button type="button" class="btn btn-secondary btn-lg spAttack">Special</button>`;
-        $(".battleLog").prepend(butts);
-        $(".beginFight").hide();
+    // var enemyrndAtk = Math.floor(Math.random() * (enemy.atk + 2) + (enemy.atk - 2))
+    // var edmg = enemyrndAtk - player.armor;
+    // pHp -= edmg;
 
+    // var pLog = `<li class="list-group-item list-group-item-primary">${player.name} attacked for ${dmg} damage! ${enemy.name} has ${eHp} left!</li>`;
+    // var eLog = `<li class="list-group-item list-group-item-primary">${enemy.name} attacked for ${edmg} damage! ${player.name} has ${pHp} left!</li>`;
+
+    if (playerFirst) {
+      if (atks == 1 && cpuAtks == 1) {
+        playerSpAtk();
+        enemyAction();
+      } else if (atks == 2) {
+        playerSpAtk();
+        enemyAction();
+        playerSpAtk();
+      } else if (cpuAtks == 2) {
+        playerSpAtk();
+        enemyAction();
+        enemyAction();
+      }
+    } else {
+      if (atks == 1 && cpuAtks == 1) {
+        enemyAction();
+        playerSpAtk();
+      } else if (atks == 2) {
+        enemyAction();
+        playerSpAtk();
+        playerSpAtk();
+      } else if (cpuAtks == 2) {
+        enemyAction();
+        playerSpAtk();
+        enemyAction();
+      }
     }
-    $(document).on("click", ".pAttack", function () {
-        // speedCalc();
+  }
 
-        damageDealtAtk();
+  function enemyAction() {
+    if (enemy.class == "warlock" || enemy.class == "mage") {
+      enemySpAtk();
+    } else {
+      enemyAtk();
+    }
+  }
+  function playerAtk() {
+    var rndAtk = Math.floor(
+      Math.random() * (player.atk + 2) + (player.atk - 2)
+    );
+    var dmg = rndAtk - enemy.armor;
+    eHp -= rndAtk - enemy.armor;
+>>>>>>> master
 
-    })
-    $(document).on("click", ".spAttack", function () {
+    var pLog = `<li class="list-group-item list-group-item-primary">${
+      player.name
+    } attacked for ${dmg} damage! ${enemy.name} has ${eHp} left!</li>`;
+    $(".log").prepend(pLog);
+  }
+  function playerSpAtk() {
+    var rndAtk = Math.floor(
+      Math.random() * (player.spAtk + 2) + (player.spAtk - 2)
+    );
+    var dmg = Math.floor(rndAtk * ((100 - enemy.resistance) / 100));
+    eHp -= dmg;
 
-    })
-})
+    var pLog = `<li class="list-group-item list-group-item-primary">${
+      player.name
+    } casted a spell for ${dmg} damage! ${enemy.name} has ${eHp} left!</li>`;
+    $(".log").prepend(pLog);
+  }
+  function enemyAtk() {
+    var enemyrndAtk = Math.floor(
+      Math.random() * (enemy.atk + 2) + (enemy.atk - 2)
+    );
+    var edmg = enemyrndAtk - player.armor;
+    pHp -= edmg;
+    var eLog = `<li class="list-group-item list-group-item-danger">${
+      enemy.name
+    } attacked for ${edmg} damage! ${player.name} has ${pHp} left!</li>`;
+    $(".log").prepend(eLog);
+  }
+
+  function enemySpAtk() {
+    var enemyrndAtk = Math.floor(
+      Math.random() * (enemy.spAtk + 2) + (enemy.spAtk - 2)
+    );
+    var edmg = Math.floor(enemyrndAtk * ((100 - player.resistance) / 100));
+    pHp -= edmg;
+    var eLog = `<li class="list-group-item list-group-item-danger">${
+      enemy.name
+    } casted a spell for ${edmg} damage! ${player.name} has ${pHp} left!</li>`;
+    $(".log").prepend(eLog);
+  }
+  // function damageDealtSpAtk(spattack, hp, res) {
+
+  // }
+  $(document).on("click", ".beginFight", function() {
+    fight();
+  });
+
+  function fight() {
+    var butts = ` <button type="button" class="btn btn-primary btn-lg pAttack">Physical</button>
+        <button type="button" class="btn btn-secondary btn-lg spAttack">Special</button>`;
+    $(".battleLog").prepend(butts);
+    $(".beginFight").hide();
+  }
+  $(document).on("click", ".pAttack", function() {
+    // speedCalc();
+
+    damageDealtAtk();
+  });
+  $(document).on("click", ".spAttack", function() {
+    damageDealtSpAtk();
+  });
+});
