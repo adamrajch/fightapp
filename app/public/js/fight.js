@@ -166,6 +166,11 @@ $(document).ready(function () {
 
         var pLog = `<li class="list-group-item list-group-item-primary">${player.name} attacked for ${dmg} damage! ${enemy.name} has ${eHp} left!</li>`;
         $(".log").prepend(pLog);
+
+
+
+
+
     }
     function enemyAtk() {
         var enemyrndAtk = Math.floor(Math.random() * (enemy.atk + 2) + (enemy.atk - 2))
@@ -173,6 +178,9 @@ $(document).ready(function () {
         pHp -= edmg;
         var eLog = `<li class="list-group-item list-group-item-danger">${enemy.name} attacked for ${edmg} damage! ${player.name} has ${pHp} left!</li>`;
         $(".log").prepend(eLog);
+
+
+
     }
     // function damageDealtSpAtk(spattack, hp, res) {
 

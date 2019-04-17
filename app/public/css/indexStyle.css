@@ -12,7 +12,7 @@ body{
     display:block;
     width:100%;
 }
-.hero-section {
+/* .hero-section {
     background-image: url(../images/displayImage.jpg);
     height: 100vh;
     width: 100%;
@@ -21,7 +21,14 @@ body{
      margin: 0;
     padding: 0; 
      background-size:100% 100%;
-  }
+  } */
+  .carousel-text{
+    font-size: 80px;
+    color: goldenrod;
+    background-color: black;
+    opacity: .6;
+}
+
   .info-container{
       text-align: center;
   }
@@ -52,8 +59,8 @@ body{
     background-image: url(../images/gradient.jpg);
     background-size:cover;
     border: 3px solid rgb(245, 193, 63);
-    /* margin-bottom: 10px; */
-}
+    margin-bottom: 10px;
+} 
 .display-4{
     font-size: 84px;
     font-weight: bolder;
@@ -73,4 +80,8 @@ body{
 .my-4{
 
     color: goldenrod;
+}
+
+.slide-text{
+    text-align: center;
 }
