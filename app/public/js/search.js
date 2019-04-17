@@ -1,78 +1,104 @@
-$(document).ready(function () {
+$(document).ready(function() {
   var fighterList = [];
-  $("#selectBtn").on("click", function (e) {
-    console.log($("#selector").val())
-    e.preventDefault()
+  $("#selectBtn").on("click", function(e) {
+    console.log($("#selector").val());
+    e.preventDefault();
     getFighterByClass($("#selector").val());
-  })
-  $("#displayAll").on("click", function (e) {
-    e.preventDefault()
+  });
+  $("#displayAll").on("click", function(e) {
+    e.preventDefault();
     $(".display").empty();
     getFighters();
-  })
-  $("#searchFighter").on("click", function (e) {
+  });
+  $("#searchFighter").on("click", function(e) {
     e.preventDefault();
     // console.log($("#searchGuy").val())
-    if ($("#searchGuy").val().trim() == "") {
-      $("#searchGuy").attr("placeholder", "Enter a real name >:(")
-    }
-    else {
-      $(".error").empty()
+    if (
+      $("#searchGuy")
+        .val()
+        .trim() == ""
+    ) {
+      $("#searchGuy").attr("placeholder", "Enter a real name >:(");
+    } else {
+      $(".error").empty();
       $(".display").empty();
-      var charName = $("#searchGuy").val()
-      console.log(charName)
-      $.get("/api/fighters/" + charName, function (data, err) {
-        console.log(err)
-        console.log(data)
+      var charName = $("#searchGuy").val();
+      console.log(charName);
+      $.get("/api/fighters/" + charName, function(data, err) {
+        console.log(err);
+        console.log(data);
         if (data.length == 0) {
-          console.log(err)
-          $(".error").text("That fighter does not exist! Search a different name")
+          console.log(err);
+          $(".error").text(
+            "That fighter does not exist! Search a different name"
+          );
           throw err;
-        }
-        else {
+        } else {
           createFighterCard(data[0]);
         }
-      })
+      });
     }
-  })
-  $('#searchGuy').keypress(function (e) {
+  });
+  $("#searchGuy").keypress(function(e) {
+    if (e.which == 13) {
+      //Enter key pressed
+      e.preventDefault();
+      $("#searchFighter").click(); //Trigger search button click event
+    }
+  });
+  $(document).on("click", ".challenge", function() {
+    console.log($(this).attr("fighter"));
+    var fight = $(this).attr("fighter");
 
-    if (e.which == 13) {//Enter key pressed
-      e.preventDefault()
-      $('#searchFighter').click();//Trigger search button click event
-    }
+    challengeFighter(fight);
   });
 
   function getFighters() {
-    $.get("/api/fighters", function (data) {
-
-
+    $.get("/api/fighters", function(data) {
       fighterList = data;
 
       for (let i = data.length - 1; data.length > -1; i--) {
         createFighterCard(data[i]);
       }
       // postFighters();
-    })
+    });
   }
 
   function getFighterByClass(b) {
     $(".display").empty();
     var fighterClass = b;
-    $.get("/api/classes/" + fighterClass, function (data) {
+    $.get("/api/classes/" + fighterClass, function(data) {
       for (let i = data.length - 1; data.length > -1; i--) {
         createFighterCard(data[i]);
       }
-    })
+    });
+  }
+
+  function challengeFighter(id) {
+    console.log(id);
+    $.get("/api/profile", function(data) {
+      var newData = data;
+      newData.enemy = id;
+
+      $.ajax({
+        url: "/api/update",
+        type: "PUT",
+        data: newData,
+        success: function(response) {
+          window.location.href = "/fight";
+        }
+      });
+    });
   }
 
   function createFighterCard(b) {
     var fighter = b;
-    var upName = b.class
-    upName = upName.toUpperCase()
-    var card =
-      `<div class="card classCard" style="width: 18rem;">
-    <img src="${fighter.photo}" class="card-img-top" style="height: 18rem;" alt="your fighter">
+    var upName = b.class;
+    upName = upName.toUpperCase();
+    var card = `<div class="card classCard" style="width: 18rem;">
+    <img src="${
+      fighter.photo
+    }" class="card-img-top" style="height: 18rem;" alt="your fighter">
     <div class="card-body">
     <h1 class="username">${fighter.name}</h1>
         <h5 class="card-title">${upName} Class Lvl.1</h5>
@@ -87,9 +113,9 @@ $(document).ready(function () {
         <li>Win: ${fighter.win} </li>
         <li>Losses: ${fighter.loss} </li>
         </ul>
-        <button class="challenge">Challenge</button>
+        <button class="challenge" fighter="${fighter.id}">Challenge</button>
     </div>
 </div>`;
     $(".display").append(card);
   }
-})
+});
