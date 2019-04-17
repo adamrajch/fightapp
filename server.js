@@ -56,8 +56,13 @@ passport.deserializeUser(function (user, done) {
 // Starts the server to begin listening
 
 var db = require("./app/models");
+<<<<<<< HEAD
 db.sequelize.sync({ force: true }).then(function () {
   app.listen(process.env.PORT || 3000, function () {
+=======
+db.sequelize.sync().then(function() {
+  app.listen(process.env.PORT || 3000, function() {
+>>>>>>> master
     console.log(
       "Express server listening on port %d in %s mode",
       this.address().port,
