@@ -118,3 +118,23 @@ button{
     margin-top:2rem;
     /* margin-left:6rem; */
 }
+.battleLog{
+    text-align: center;
+    color: gold;
+    font-size: 28px;
+}
+.logContainer{
+    height:600px;
+    overflow: auto;
+}
+.pa{
+    background-image: url("../images/darkgradient.jpg");
+    color:gold;
+}
+.ea{
+    background-color:black;
+    color:red
+}
+.log{
+    margin-top:30px;
+}
