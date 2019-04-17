@@ -18,6 +18,13 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/api/fighters/id/:id", function(req, res) {
+    db.Fighter.findAll({ where: { id: req.params.id } }).then(function(data) {
+      // if (err) throw err;
+      res.json(data);
+    });
+  });
+
   app.get("/api/users/:name", function(req, res) {
     db.User.findAll({ where: { username: req.params.name } }).then(function(
       data
