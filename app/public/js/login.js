@@ -9,7 +9,7 @@ $(document).ready(function() {
     newUser.password = $("#passwordGuy").val();
 
     $.post("/login", newUser, function() {
-      window.location.href = "/search";
+      window.location.href = "/profile";
     });
   });
 });

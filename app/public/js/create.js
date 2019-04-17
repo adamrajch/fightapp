@@ -270,7 +270,7 @@ $(document).ready(function() {
   $(document).on("click", ".goHome", function() {
     console.log(chosen);
     $.post("/api/fighters/" + chosen.class, chosen, function() {
-      window.location.href = "/search";
+      window.location.href = "/profile";
     });
   });
 
