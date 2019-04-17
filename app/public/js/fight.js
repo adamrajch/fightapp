@@ -1,3 +1,4 @@
+import { ENOMEM } from "constants";
 
 $(document).ready(function () {
 
@@ -9,6 +10,7 @@ $(document).ready(function () {
     let pHp;
     let atks;
     let cpuAtks;
+    let logArr = [];
 
     $.get('/api/fighters', function (data, err) {
         var p1 = data[0];
@@ -159,21 +161,67 @@ $(document).ready(function () {
 
     }
     function playerAtk() {
+        if (player.hp <= 0) {
+            console.log("u died bro")
+        }
+        else {
+            var rndAtk = Math.floor(Math.random() * (player.atk + 2) + (player.atk - 2))
+            var dmg = rndAtk - enemy.armor;
+            eHp -= rndAtk - enemy.armor;
 
-        var rndAtk = Math.floor(Math.random() * (player.atk + 2) + (player.atk - 2))
-        var dmg = rndAtk - enemy.armor;
-        eHp -= rndAtk - enemy.armor;
+            if (eHp <= 0) {
+                var pLog = `<li class="list-group-item list-group-item-primary">${player.name} attacked for ${dmg} damage! ${enemy.name} has ${eHp} left!</li>`;
+                $(".log").prepend("<hr>");
+                $(".log").prepend(pLog);
+                var winLog = `<li class="list-group-item list-group-item-primary">${enemy.name} is defated! ${player.name} wins!</li>`;
+                $(".pAttack").hide()
+                $(".spAttack").hide()
+                $(".log").prepend(winLog);
 
-        var pLog = `<li class="list-group-item list-group-item-primary">${player.name} attacked for ${dmg} damage! ${enemy.name} has ${eHp} left!</li>`;
-        $(".log").prepend(pLog);
+            }
+
+            else {
+                var pLog = `<li class="list-group-item list-group-item-primary">${player.name} attacked for ${dmg} damage! ${enemy.name} has ${eHp} left!</li>`;
+                $(".log").prepend("<hr>");
+                $(".log").prepend(pLog);
+            }
+        }
+
+
+
     }
     function enemyAtk() {
-        var enemyrndAtk = Math.floor(Math.random() * (enemy.atk + 2) + (enemy.atk - 2))
-        var edmg = enemyrndAtk - player.armor;
-        pHp -= edmg;
-        var eLog = `<li class="list-group-item list-group-item-danger">${enemy.name} attacked for ${edmg} damage! ${player.name} has ${pHp} left!</li>`;
-        $(".log").prepend(eLog);
+        if (enemy.hp <= 0) {
+            console.log("enemy died")
+        }
+        else {
+            var enemyrndAtk = Math.floor(Math.random() * (enemy.atk + 2) + (enemy.atk - 2))
+            var edmg = enemyrndAtk - player.armor;
+            pHp -= edmg;
+            var eLog = `<li class="list-group-item list-group-item-danger">${enemy.name} attacked for ${edmg} damage! ${player.name} has ${pHp} left!</li>`;
+            // logArr.push(eLog);
+            // $(".log").prepend(eLog);
+
+            // console.log($(".log"))
+            if (pHp <= 0) {
+                // var eLog = `<li class="list-group-item list-group-item-primary">${enemy.name} attacked for ${edmg} damage! ${player.name} has ${pHp} left!</li>`;
+                $(".log").prepend("<hr>");
+                $(".log").prepend(eLog);
+                var winLog = `<li class="list-group-item list-group-item-primary">${player.name} is defated! ${enemy.name} wins!</li>`;
+                $(".pAttack").hide()
+                $(".spAttack").hide()
+                $(".log").prepend(winLog);
+
+            }
+
+            else {
+                $(".log").prepend("<hr>");
+                $(".log").prepend(eLog);
+            }
+        }
+
     }
+
     // function damageDealtSpAtk(spattack, hp, res) {
 
     // }
