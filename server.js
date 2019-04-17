@@ -45,19 +45,19 @@ require("./app/routes/auth")(app, passport);
 require("./app/routes/htmlRoutes")(app);
 require("./app/config/passport")(passport);
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
   done(null, user);
 });
 
-passport.deserializeUser(function(user, done) {
+passport.deserializeUser(function (user, done) {
   done(null, user);
 });
 
 // Starts the server to begin listening
 
 var db = require("./app/models");
-db.sequelize.sync().then(function() {
-  app.listen(process.env.PORT || 3000, function() {
+db.sequelize.sync({ force: true }).then(function () {
+  app.listen(process.env.PORT || 3000, function () {
     console.log(
       "Express server listening on port %d in %s mode",
       this.address().port,
